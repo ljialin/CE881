@@ -117,8 +117,8 @@ public class MainView extends View implements View.OnClickListener, View.OnTouch
         for(int k=0; k<this.dim*this.dim; k++) {
             int thiscolor = model.getBits()[k]>0 ? offColor : onColor;
             bgPaint.setColor(thiscolor);
-            int i = k/this.dim;
-            int j = k%this.dim;
+            int i = k%this.dim;
+            int j = k/this.dim;
             drawTile(canvas, (int) (gridPosX + i*winSize + winSize/2), (int) (gridPosY + j*winSize + winSize/2), bgPaint);
         }
     }
@@ -152,11 +152,13 @@ public class MainView extends View implements View.OnClickListener, View.OnTouch
 
     @Override
     public void onClick(View v) {
-        int i = (int) ((currentPosX - gridPosX)/winSize);
-        System.out.println(tag + " current position (" + currentPosX + "," + currentPosY +") and window size=" + winSize);
-        int j = (int) ((currentPosY - gridPosY)/winSize);
-        System.out.println(tag + "tile (" + i + "," + j +") clicked");
-        model.flip(j,i);
+        if(currentPosX<=gridPosX+gridSize && currentPosX>=gridPosX && currentPosY<=gridPosY+gridSize && currentPosY>= gridPosY) {
+            int i = (int) ((currentPosX - gridPosX) / winSize);
+            System.out.println(tag + " current position (" + currentPosX + "," + currentPosY + ") and window size=" + winSize);
+            int j = (int) ((currentPosY - gridPosY) / winSize);
+            System.out.println(tag + "tile (" + i + "," + j + ") clicked");
+            model.flip(i,j);
+        }
         postInvalidate();
     }
 

@@ -1,5 +1,6 @@
 package com.example.admin.whiteout;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
@@ -13,7 +14,7 @@ public class WhiteOut {
     static long initTime = 1000000;
     private int dim;  // width=height
     private int[] bits;  // black for 1 bit and white for 0 bit
-    private HashMap<Integer,int[]> neighbourTable;
+    private HashMap<Integer,ArrayList> neighbourTable;
     static Random rdm = new Random();
 
     public WhiteOut(int _dim) {
@@ -23,11 +24,19 @@ public class WhiteOut {
         // Build neighbour lookup table
         this.neighbourTable = new HashMap<>();
         for(int i=0; i<this.bits.length; i++) {
-            int[] neighbours = new int[4];
-            neighbours[0] = i - 1;  // left
-            neighbours[1] = i + 1;  // right
-            neighbours[2] = i - this.dim;  // top
-            neighbours[3] = i + this.dim;  // bottom
+            ArrayList<Integer> neighbours = new ArrayList<>();
+            if(i%dim!=0) {
+                neighbours.add(i - 1);  // left
+            }
+            if(i%dim!=dim-1) {
+                neighbours.add(i + 1);  // right
+            }
+            if(i/dim>0) {
+                neighbours.add(i - this.dim);  // top
+            }
+            if(i/dim<dim-1) {
+                neighbours.add(i + this.dim);  // bottom
+            }
             this.neighbourTable.put(i, neighbours);
         }
         assert(this.neighbourTable.size() == this.dim *this.dim);
@@ -69,11 +78,9 @@ public class WhiteOut {
         int idx = y*this.dim + x;
         assert(idx >= 0 && idx < this.bits.length);
         this.bits[idx] = 1 - this.bits[idx];
-        int[] neighbours = this.neighbourTable.get(idx);
-        for(int i=0; i<neighbours.length; i++) {
-            if(neighbours[i] >= 0 && neighbours[i] < this.bits.length) {
-                this.bits[neighbours[i]] = 1 - this.bits[neighbours[i]];
-            }
+        ArrayList<Integer> neighbours = this.neighbourTable.get(idx);
+        for(int i=0; i<neighbours.size(); i++) {
+            this.bits[neighbours.get(i)] = 1 - this.bits[neighbours.get(i)];
         }
     }
 
