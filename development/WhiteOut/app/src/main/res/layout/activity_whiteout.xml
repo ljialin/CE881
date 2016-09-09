@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_main">
+
+
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset the game"
+        android:onClick="resetModel"
+        android:textSize="10sp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <com.example.admin.whiteout.MainView
+        android:id="@+id/whiteout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
