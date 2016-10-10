@@ -1,6 +1,9 @@
 package com.example.admin.whiteout;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +12,10 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jialin Liu on 09/09/2016.
@@ -28,8 +35,8 @@ public class MainView extends View implements View.OnClickListener, View.OnTouch
     static int gridColor = Color.YELLOW;
     static int offColor = Color.BLACK;
     static int onColor = Color.WHITE;
-    static int dim = 10;
-
+    static int dim = 5;
+    static boolean reset = false;
 
     //Text
     private float textSize;
@@ -69,9 +76,9 @@ public class MainView extends View implements View.OnClickListener, View.OnTouch
     }
 
     public void setup(Context context, String cons) {
+        setOnClickListener(this);
         System.out.println(tag + cons);
         checkModel();
-        setOnClickListener(this);
         setOnTouchListener(this);
     }
 
@@ -101,13 +108,13 @@ public class MainView extends View implements View.OnClickListener, View.OnTouch
         Paint textPaint = new Paint();
         textSize = (float) (textFrac * Math.min(getWidth(), getHeight()));
         textPaint.setTextSize(textSize);
-        float textWidth = textPaint.measureText(desp);
-        textPaint.setColor(textColor);
-        // Align the text to the center
-        textPaint.setTextSize(textSize);
-        textPosX = (getWidth() - textWidth) / 2;
-        System.out.println(getWidth() + " " + getHeight() + " " + textWidth);
-        canvas.drawText(desp, textPosX, textPosY, textPaint);
+//        float textWidth = textPaint.measureText(desp);
+//        textPaint.setColor(textColor);
+//        // Align the text to the center
+//        textPaint.setTextSize(textSize);
+//        textPosX = (getWidth() - textWidth) / 2;
+//        System.out.println(getWidth() + " " + getHeight() + " " + textWidth);
+//        canvas.drawText(desp, textPosX, textPosY, textPaint);
 
         // Draw grid
         setGeometry();

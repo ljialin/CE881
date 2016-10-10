@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">WhiteOut</string>
+    <string name="app_name">WhiteOut: Turn off the lights!</string>
+    <string name="dialog_title">Select a grid size</string>
+    <string-array name="size">
+        <item>5x5</item>
+        <item>7x7</item>
+        <item>9x9</item>
+    </string-array>
 </resources>

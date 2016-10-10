@@ -6,20 +6,25 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/activity_main">
 
-
-
     <Button
         android:id="@+id/reset"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reset the game"
+        android:layout_width="match_parent"
+        android:text="Reset"
         android:onClick="resetModel"
-        android:textSize="10sp"
-        android:layout_centerHorizontal="true"
+     />
+
+    <Button
+        android:id="@+id/show_level_dialog"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Change level"
         />
 
     <com.example.admin.whiteout.MainView
         android:id="@+id/whiteout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 </LinearLayout>

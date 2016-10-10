@@ -11,14 +11,17 @@ import java.util.Timer;
  * jialin.liu@essex.ac.uk
  */
 public class WhiteOut {
-    static long initTime = 1000000;
     private int dim;  // width=height
     private int[] bits;  // black for 1 bit and white for 0 bit
     private HashMap<Integer,ArrayList> neighbourTable;
     static Random rdm = new Random();
 
-    public WhiteOut(int _dim) {
-        this.dim = _dim;
+    public WhiteOut(int dim) {
+        reset(dim);
+    }
+
+    public void reset(int dim) {
+        this.dim = dim;
         this.bits = new int[this.dim*this.dim];
         assert(this.bits != null);
         // Build neighbour lookup table
